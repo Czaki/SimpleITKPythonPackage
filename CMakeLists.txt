@@ -172,15 +172,11 @@ if(SimpleITKPythonPackage_SUPERBUILD)
   if(DEFINED PYTHON_INCLUDE_DIR AND NOT EXISTS ${PYTHON_INCLUDE_DIR})
     message(FATAL_ERROR "PYTHON_INCLUDE_DIR variable is defined but corresponds to nonexistent directory")
   endif()
-  if(DEFINED PYTHON_LIBRARY AND NOT EXISTS ${PYTHON_LIBRARY})
-    message(FATAL_ERROR "PYTHON_LIBRARY variable is defined but corresponds to nonexistent file")
-  endif()
   if(DEFINED PYTHON_EXECUTABLE AND NOT EXISTS ${PYTHON_EXECUTABLE})
     message(FATAL_ERROR "PYTHON_EXECUTABLE variable is defined but corresponds to nonexistent file")
   endif()
 
   if(NOT DEFINED PYTHON_INCLUDE_DIR
-     OR NOT DEFINED PYTHON_LIBRARY
      OR NOT DEFINED PYTHON_EXECUTABLE)
 
     find_package ( PythonLibs REQUIRED )
@@ -189,7 +185,6 @@ if(SimpleITKPythonPackage_SUPERBUILD)
   endif()
 
   message(STATUS "SuperBuild -   PYTHON_INCLUDE_DIR: ${PYTHON_INCLUDE_DIR}")
-  message(STATUS "SuperBuild -   PYTHON_LIBRARY: ${PYTHON_LIBRARY}")
   message(STATUS "SuperBuild -   PYTHON_EXECUTABLE: ${PYTHON_EXECUTABLE}")
 
 
@@ -209,7 +204,6 @@ if(SimpleITKPythonPackage_SUPERBUILD)
     CMAKE_CACHE_ARGS
       ${ep_common_cmake_cache_args}
       -DPYTHON_INCLUDE_DIR:PATH=${PYTHON_INCLUDE_DIR}
-      -DPYTHON_LIBRARY:PATH=${PYTHON_LIBRARY}
       -DPYTHON_EXECUTABLE:PATH=${PYTHON_EXECUTABLE}
       -DBUILD_TESTING:BOOL=OFF
       -DSimpleITK_PYTHON_THREADS:BOOL=${SimpleITK_PYTHON_THREADS}
